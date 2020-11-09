@@ -4,7 +4,7 @@
 #
 Name     : lz4
 Version  : 1.9.2
-Release  : 29
+Release  : 30
 URL      : https://github.com/lz4/lz4/archive/v1.9.2.tar.gz
 Source0  : https://github.com/lz4/lz4/archive/v1.9.2.tar.gz
 Summary  : extremely fast lossless compression algorithm library
@@ -103,6 +103,7 @@ man components for the lz4 package.
 
 %prep
 %setup -q -n lz4-1.9.2
+cd %{_builddir}/lz4-1.9.2
 %patch1 -p1
 %patch2 -p1
 pushd ..
@@ -114,14 +115,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571434936
+export SOURCE_DATE_EPOCH=1604900513
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FCFLAGS="$CFLAGS -O3 -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FFLAGS="$CFLAGS -O3 -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$FFLAGS -O3 -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$FFLAGS -O3 -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 make
 
@@ -142,7 +143,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test
 
 %install
-export SOURCE_DATE_EPOCH=1571434936
+export SOURCE_DATE_EPOCH=1604900513
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lz4
 cp %{_builddir}/lz4-1.9.2/contrib/debian/copyright %{buildroot}/usr/share/package-licenses/lz4/7e9bb6bda6de8d3a47aee7558b73b0562abf91f2
