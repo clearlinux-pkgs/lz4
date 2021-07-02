@@ -1,4 +1,4 @@
-From 53a2ed4d32facd2e96639cbd3d45f23bf04ef69e Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: California Sullivan <california.l.sullivan@intel.com>
 Date: Mon, 14 Oct 2019 16:50:19 -0700
 Subject: [PATCH] Makefile: propagate CFLAGS
@@ -30,7 +30,7 @@ Signed-off-by: California Sullivan <california.l.sullivan@intel.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index f25f951..50b74c4 100644
+index 744005f..0ca719d 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -50,13 +50,13 @@ allmost: lib lz4
@@ -49,6 +49,3 @@ index f25f951..50b74c4 100644
  	@cp $(PRGDIR)/lz4$(EXT) .
  
  .PHONY: examples
--- 
-2.23.0
-

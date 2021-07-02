@@ -1,2 +1,3 @@
 fix-make-install.patch
 0001-Makefile-propagate-CFLAGS.patch
+CVE-2021-3520.patch
