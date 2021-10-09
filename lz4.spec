@@ -4,13 +4,14 @@
 #
 Name     : lz4
 Version  : 1.9.3
-Release  : 32
+Release  : 33
 URL      : https://github.com/lz4/lz4/archive/v1.9.3/lz4-1.9.3.tar.gz
 Source0  : https://github.com/lz4/lz4/archive/v1.9.3/lz4-1.9.3.tar.gz
 Summary  : extremely fast lossless compression algorithm library
 Group    : Development/Tools
 License  : BSD-2-Clause GPL-2.0
 Requires: lz4-bin = %{version}-%{release}
+Requires: lz4-filemap = %{version}-%{release}
 Requires: lz4-lib = %{version}-%{release}
 Requires: lz4-license = %{version}-%{release}
 Requires: lz4-man = %{version}-%{release}
@@ -40,6 +41,7 @@ typically reaching RAM speed limits on multi-core systems.
 Summary: bin components for the lz4 package.
 Group: Binaries
 Requires: lz4-license = %{version}-%{release}
+Requires: lz4-filemap = %{version}-%{release}
 
 %description bin
 bin components for the lz4 package.
@@ -68,10 +70,19 @@ Requires: lz4-dev = %{version}-%{release}
 dev32 components for the lz4 package.
 
 
+%package filemap
+Summary: filemap components for the lz4 package.
+Group: Default
+
+%description filemap
+filemap components for the lz4 package.
+
+
 %package lib
 Summary: lib components for the lz4 package.
 Group: Libraries
 Requires: lz4-license = %{version}-%{release}
+Requires: lz4-filemap = %{version}-%{release}
 
 %description lib
 lib components for the lz4 package.
@@ -120,19 +131,19 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1625201298
+export SOURCE_DATE_EPOCH=1633799159
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
 make
 
 pushd ../build32/
-export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+export PKG_CONFIG_PATH="/usr/lib32/pkgconfig:/usr/share/pkgconfig"
 export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
 export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32 -mstackrealign"
 export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32 -mstackrealign"
@@ -140,11 +151,11 @@ export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32 -mstackrealign"
 make
 popd
 pushd ../buildavx2
-export CFLAGS="$CFLAGS -m64 -march=haswell"
-export CXXFLAGS="$CXXFLAGS -m64 -march=haswell"
-export FFLAGS="$FFLAGS -m64 -march=haswell"
-export FCFLAGS="$FCFLAGS -m64 -march=haswell"
-export LDFLAGS="$LDFLAGS -m64 -march=haswell"
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 make
 popd
 
@@ -156,7 +167,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test
 
 %install
-export SOURCE_DATE_EPOCH=1625201298
+export SOURCE_DATE_EPOCH=1633799159
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lz4
 cp %{_builddir}/lz4-1.9.3/contrib/debian/copyright %{buildroot}/usr/share/package-licenses/lz4/2f38265e78715b5aa3ecf5b1ae2478bcaa74ab15
@@ -173,9 +184,16 @@ pushd %{buildroot}/usr/lib32/pkgconfig
 for i in *.pc ; do ln -s $i 32$i ; done
 popd
 fi
+if [ -d %{buildroot}/usr/share/pkgconfig ]
+then
+pushd %{buildroot}/usr/share/pkgconfig
+for i in *.pc ; do ln -s $i 32$i ; done
+popd
+fi
 popd
 pushd ../buildavx2/
-%make_install_avx2 PREFIX=/usr LIBDIR=/usr/lib64
+%make_install_v3 PREFIX=/usr LIBDIR=/usr/lib64
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 popd
 %make_install PREFIX=/usr LIBDIR=/usr/lib64
 
@@ -184,14 +202,11 @@ popd
 
 %files bin
 %defattr(-,root,root,-)
-/usr/bin/haswell/lz4
-/usr/bin/haswell/lz4c
-/usr/bin/haswell/lz4cat
-/usr/bin/haswell/unlz4
 /usr/bin/lz4
 /usr/bin/lz4c
 /usr/bin/lz4cat
 /usr/bin/unlz4
+/usr/share/clear/optimized-elf/bin*
 
 %files dev
 %defattr(-,root,root,-)
@@ -199,7 +214,6 @@ popd
 /usr/include/lz4frame.h
 /usr/include/lz4frame_static.h
 /usr/include/lz4hc.h
-/usr/lib64/haswell/liblz4.so
 /usr/lib64/liblz4.so
 /usr/lib64/pkgconfig/liblz4.pc
 
@@ -209,12 +223,15 @@ popd
 /usr/lib32/pkgconfig/32liblz4.pc
 /usr/lib32/pkgconfig/liblz4.pc
 
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-lz4
+
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/haswell/liblz4.so.1
-/usr/lib64/haswell/liblz4.so.1.9.3
 /usr/lib64/liblz4.so.1
 /usr/lib64/liblz4.so.1.9.3
+/usr/share/clear/optimized-elf/lib*
 
 %files lib32
 %defattr(-,root,root,-)
