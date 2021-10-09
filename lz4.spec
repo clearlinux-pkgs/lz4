@@ -4,7 +4,7 @@
 #
 Name     : lz4
 Version  : 1.9.3
-Release  : 33
+Release  : 34
 URL      : https://github.com/lz4/lz4/archive/v1.9.3/lz4-1.9.3.tar.gz
 Source0  : https://github.com/lz4/lz4/archive/v1.9.3/lz4-1.9.3.tar.gz
 Summary  : extremely fast lossless compression algorithm library
@@ -131,7 +131,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1633799159
+export SOURCE_DATE_EPOCH=1633800729
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -167,7 +167,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test
 
 %install
-export SOURCE_DATE_EPOCH=1633799159
+export SOURCE_DATE_EPOCH=1633800729
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lz4
 cp %{_builddir}/lz4-1.9.3/contrib/debian/copyright %{buildroot}/usr/share/package-licenses/lz4/2f38265e78715b5aa3ecf5b1ae2478bcaa74ab15
