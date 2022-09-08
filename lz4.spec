@@ -4,7 +4,7 @@
 #
 Name     : lz4
 Version  : 1.9.4
-Release  : 43
+Release  : 44
 URL      : https://github.com/lz4/lz4/archive/v1.9.4/lz4-1.9.4.tar.gz
 Source0  : https://github.com/lz4/lz4/archive/v1.9.4/lz4-1.9.4.tar.gz
 Summary  : extremely fast lossless compression algorithm library
@@ -110,6 +110,15 @@ Group: Default
 man components for the lz4 package.
 
 
+%package staticdev
+Summary: staticdev components for the lz4 package.
+Group: Default
+Requires: lz4-dev = %{version}-%{release}
+
+%description staticdev
+staticdev components for the lz4 package.
+
+
 %prep
 %setup -q -n lz4-1.9.4
 cd %{_builddir}/lz4-1.9.4
@@ -125,7 +134,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1660667822
+export SOURCE_DATE_EPOCH=1662596574
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -161,12 +170,13 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test
 
 %install
-export SOURCE_DATE_EPOCH=1660667822
+export SOURCE_DATE_EPOCH=1662596574
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lz4
 cp %{_builddir}/lz4-%{version}/contrib/debian/copyright %{buildroot}/usr/share/package-licenses/lz4/2f38265e78715b5aa3ecf5b1ae2478bcaa74ab15
 cp %{_builddir}/lz4-%{version}/contrib/djgpp/LICENSE %{buildroot}/usr/share/package-licenses/lz4/693c355ac3857d8a8af6acec22075ef344492a1c
 cp %{_builddir}/lz4-%{version}/examples/COPYING %{buildroot}/usr/share/package-licenses/lz4/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/lz4-%{version}/lib/LICENSE %{buildroot}/usr/share/package-licenses/lz4/63aa9e87fdd44f2c9627db9a6b6d29a95e6ef53d
 cp %{_builddir}/lz4-%{version}/programs/COPYING %{buildroot}/usr/share/package-licenses/lz4/4cc77b90af91e615a64ae04893fdffa7939db84c
 cp %{_builddir}/lz4-%{version}/tests/COPYING %{buildroot}/usr/share/package-licenses/lz4/4cc77b90af91e615a64ae04893fdffa7939db84c
 pushd ../build32/
@@ -237,6 +247,7 @@ popd
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/lz4/2f38265e78715b5aa3ecf5b1ae2478bcaa74ab15
 /usr/share/package-licenses/lz4/4cc77b90af91e615a64ae04893fdffa7939db84c
+/usr/share/package-licenses/lz4/63aa9e87fdd44f2c9627db9a6b6d29a95e6ef53d
 /usr/share/package-licenses/lz4/693c355ac3857d8a8af6acec22075ef344492a1c
 
 %files man
@@ -245,3 +256,7 @@ popd
 /usr/share/man/man1/lz4c.1
 /usr/share/man/man1/lz4cat.1
 /usr/share/man/man1/unlz4.1
+
+%files staticdev
+%defattr(-,root,root,-)
+/usr/lib64/glibc-hwcaps/x86-64-v3/liblz4.a
