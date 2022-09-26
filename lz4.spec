@@ -4,7 +4,7 @@
 #
 Name     : lz4
 Version  : 1.9.4
-Release  : 44
+Release  : 45
 URL      : https://github.com/lz4/lz4/archive/v1.9.4/lz4-1.9.4.tar.gz
 Source0  : https://github.com/lz4/lz4/archive/v1.9.4/lz4-1.9.4.tar.gz
 Summary  : extremely fast lossless compression algorithm library
