@@ -4,7 +4,7 @@
 #
 Name     : lz4
 Version  : 1.9.4
-Release  : 45
+Release  : 46
 URL      : https://github.com/lz4/lz4/archive/v1.9.4/lz4-1.9.4.tar.gz
 Source0  : https://github.com/lz4/lz4/archive/v1.9.4/lz4-1.9.4.tar.gz
 Summary  : extremely fast lossless compression algorithm library
@@ -134,15 +134,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1662596574
+export SOURCE_DATE_EPOCH=1664930586
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Os -falign-functions=32 -fdata-sections -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
 make
 
 pushd ../build32/
@@ -170,15 +170,15 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test
 
 %install
-export SOURCE_DATE_EPOCH=1662596574
+export SOURCE_DATE_EPOCH=1664930586
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lz4
-cp %{_builddir}/lz4-%{version}/contrib/debian/copyright %{buildroot}/usr/share/package-licenses/lz4/2f38265e78715b5aa3ecf5b1ae2478bcaa74ab15
-cp %{_builddir}/lz4-%{version}/contrib/djgpp/LICENSE %{buildroot}/usr/share/package-licenses/lz4/693c355ac3857d8a8af6acec22075ef344492a1c
-cp %{_builddir}/lz4-%{version}/examples/COPYING %{buildroot}/usr/share/package-licenses/lz4/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/lz4-%{version}/lib/LICENSE %{buildroot}/usr/share/package-licenses/lz4/63aa9e87fdd44f2c9627db9a6b6d29a95e6ef53d
-cp %{_builddir}/lz4-%{version}/programs/COPYING %{buildroot}/usr/share/package-licenses/lz4/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/lz4-%{version}/tests/COPYING %{buildroot}/usr/share/package-licenses/lz4/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/lz4-%{version}/contrib/debian/copyright %{buildroot}/usr/share/package-licenses/lz4/2f38265e78715b5aa3ecf5b1ae2478bcaa74ab15 || :
+cp %{_builddir}/lz4-%{version}/contrib/djgpp/LICENSE %{buildroot}/usr/share/package-licenses/lz4/693c355ac3857d8a8af6acec22075ef344492a1c || :
+cp %{_builddir}/lz4-%{version}/examples/COPYING %{buildroot}/usr/share/package-licenses/lz4/4cc77b90af91e615a64ae04893fdffa7939db84c || :
+cp %{_builddir}/lz4-%{version}/lib/LICENSE %{buildroot}/usr/share/package-licenses/lz4/63aa9e87fdd44f2c9627db9a6b6d29a95e6ef53d || :
+cp %{_builddir}/lz4-%{version}/programs/COPYING %{buildroot}/usr/share/package-licenses/lz4/4cc77b90af91e615a64ae04893fdffa7939db84c || :
+cp %{_builddir}/lz4-%{version}/tests/COPYING %{buildroot}/usr/share/package-licenses/lz4/4cc77b90af91e615a64ae04893fdffa7939db84c || :
 pushd ../build32/
 %make_install32 PREFIX=/usr LIBDIR=/usr/lib64 PREFIX=/usr LIBDIR=/usr/lib32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
