@@ -5,7 +5,7 @@
 #
 Name     : lz4
 Version  : 1.9.4
-Release  : 50
+Release  : 51
 URL      : https://github.com/lz4/lz4/archive/v1.9.4/lz4-1.9.4.tar.gz
 Source0  : https://github.com/lz4/lz4/archive/v1.9.4/lz4-1.9.4.tar.gz
 Summary  : extremely fast lossless compression algorithm library
@@ -116,7 +116,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683055939
+export SOURCE_DATE_EPOCH=1685631082
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -152,7 +152,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test
 
 %install
-export SOURCE_DATE_EPOCH=1683055939
+export SOURCE_DATE_EPOCH=1685631082
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lz4
 cp %{_builddir}/lz4-%{version}/contrib/debian/copyright %{buildroot}/usr/share/package-licenses/lz4/2f38265e78715b5aa3ecf5b1ae2478bcaa74ab15 || :
@@ -188,9 +188,6 @@ popd
 %files bin
 %defattr(-,root,root,-)
 /V3/usr/bin/lz4
-/V3/usr/bin/lz4c
-/V3/usr/bin/lz4cat
-/V3/usr/bin/unlz4
 /usr/bin/lz4
 /usr/bin/lz4c
 /usr/bin/lz4cat
@@ -198,7 +195,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/liblz4.so
 /usr/include/lz4.h
 /usr/include/lz4frame.h
 /usr/include/lz4frame_static.h
@@ -214,7 +210,6 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/liblz4.so.1
 /V3/usr/lib64/liblz4.so.1.9.4
 /usr/lib64/liblz4.so.1
 /usr/lib64/liblz4.so.1.9.4
